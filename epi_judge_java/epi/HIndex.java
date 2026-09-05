@@ -6,7 +6,15 @@ import java.util.List;
 public class HIndex {
   @EpiTest(testDataFile = "h_index.tsv")
   public static int hIndex(List<Integer> citations) {
-    // TODO - you fill in here.
+
+    citations = citations.stream().sorted().toList();
+    Integer count = 0;
+    int length = citations.size();
+    for (int i = 0; i < length; i++) {
+      Integer citation = citations.get(i);
+      if (citation >= length - i)
+        return length - i;
+    }
     return 0;
   }
 
